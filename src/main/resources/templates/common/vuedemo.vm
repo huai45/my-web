@@ -1,0 +1,110 @@
+<!DOCTYPE>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title> </title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    {{ message }}
+</div>
+<p>--------------------------------------------------------------------</p>
+<div id="app-2">
+  <span v-bind:title="message">
+    鼠标悬停几秒钟查看此处动态绑定的提示信息！
+  </span>
+</div>
+<p>--------------------------------------------------------------------</p>
+<div id="app-3">
+<p v-if="seen">现在你看到我了</p>
+</div>
+<p>--------------------------------------------------------------------</p>
+<div id="app-4">
+    <ol>
+        <li v-for="todo in todos">
+            {{ todo.text }}
+        </li>
+    </ol>
+</div>
+<p>--------------------------------------------------------------------</p>
+<div id="app-5">
+    <p>{{ message }}</p>
+    <button v-on:click="reverseMessage">逆转消息</button>
+</div>
+<p>--------------------------------------------------------------------</p>
+<div id="app-6">
+    <p>{{ message }}</p>
+    <input v-model="message">
+</div>
+<p>--------------------------------------------------------------------</p>
+<ol id="app-7">
+    <!-- 创建一个 todo-item 组件的实例 -->
+    <todo-item v-bind:text="title"></todo-item>
+</ol>
+<p>--------------------------------------------------------------------</p>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            message: 'Hello Vue!'
+        }
+    })
+    var app2 = new Vue({
+        el: '#app-2',
+        data: {
+            message: '页面加载于 ' + new Date()
+        }
+    })
+    var app3 = new Vue({
+        el: '#app-3',
+        data: {
+            seen: true
+        }
+    })
+    var app4 = new Vue({
+        el: '#app-4',
+        data: {
+            todos: [
+                { text: '学习 JavaScript' },
+                { text: '学习 Vue' },
+                { text: '整个牛项目' }
+            ]
+        }
+    })
+    var app5 = new Vue({
+        el: '#app-5',
+        data: {
+            message: 'Hello Vue.js!'
+        },
+        methods: {
+            reverseMessage: function () {
+                this.message = this.message.split('').reverse().join('')
+            }
+        }
+    })
+    var app6 = new Vue({
+        el: '#app-6',
+        data: {
+            message: 'Hello Vue!'
+        }
+    })
+    // 定义名为 todo-item 的新组件
+    Vue.component('todo-item', {
+        props: ['text'],
+        template: '<li>这是一个todo待办项:{{text}}</li>'
+    })
+    var todo = Vue.component('todo-item');
+    var app7 = new Vue({
+        el: '#app-7',
+        components: {
+            todo:todo
+        },
+        data: {
+            title: 'Hello world!'
+        }
+    })
+
+</script>
+</body>
+</html>

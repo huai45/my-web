@@ -1,0 +1,52 @@
+<template id="t1">
+    <li>这是一个todo待办项:{{text}}</li>
+</template>
+
+<template id="t2">
+    <div>
+        <p>123</p>
+        <div>这是一个template2 todo待办项:{{value1}}</div>
+        <input v-model="value1"></input>
+    </div>
+</template>
+
+<div id="app">
+    <ol>
+        <!-- 创建一个 todo-item 组件的实例 -->
+        <todo-item v-bind:text="title"></todo-item>
+    </ol>
+    <huai23></huai23>
+</div>
+<script>
+    // 定义名为 todo-item 的新组件
+    Vue.component('todo-item', {
+        template: '#t1',
+        props: ['text']
+    })
+    //var todo = Vue.component('todo-item');
+
+    var mycom = {
+        template: '#t2',
+        data: function() {
+            return {
+                value1: 'ok'
+            }
+        },
+        methods: {
+
+        }
+    }
+
+    var app7 = new Vue({
+        el: '#app',
+        components: {
+            //todo:todo,
+            'huai23': mycom
+        },
+        data: {
+            title: 'Hello world!',
+            name:'haha'
+        }
+    })
+
+</script>

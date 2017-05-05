@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+    <title> </title>
+    <style type="text/css">
+        body,p{margin: 0;}
+        body,html,.parent{height: 100%;}
+        a{text-decoration: none;}
+        .middle{
+            overflow: hidden;
+            height: calc(100% - 100px);
+        }
+        .left{
+            float: left;
+            width: 200px;
+            margin-right: 5px;
+            height: 100%;
+        }
+        .right{
+            overflow: auto;
+            height: 100%;
+        }
+        .right-in{
+            height: 1000px;
+        }
+        .top{height:60px;}
+        .bottom{height:40px;}
+    </style>
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-default/index.css">
+    <!-- 先引入 Vue -->
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <!-- 引入组件库 -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+</head>
+<body>
+<div class="parent" id="parent" style="background-color: lightgrey;">
+    <div id="top" class="top" style="background-color: lightblue;">
+        <el-menu theme="dark" :default-active="activeIndex2" class="el-menu-demo" mode="horizontal" @select="handleSelect" menu-trigger="hover">
+            <el-menu-item index="1">处理中心</el-menu-item>
+            <el-submenu index="2">
+                <template slot="title">我的工作台</template>
+                <el-menu-item index="2-1">选项1</el-menu-item>
+                <el-menu-item index="2-2">选项2</el-menu-item>
+                <el-menu-item index="2-3">选项3</el-menu-item>
+            </el-submenu>
+            <el-menu-item index="3"><a href="https://www.ele.me" target="_blank">订单管理</a></el-menu-item>
+        </el-menu>
+    </div>
+    <div class="middle" style="background-color: pink;">
+        <div id="left" class="left" style="background-color: orange;">
+            <el-button @click="open">默认按钮</el-button>
+            <el-input v-model="input" placeholder="请输入内容"></el-input>
+            <el-menu theme="dark" default-active="2" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose">
+                <el-submenu index="1">
+                    <template slot="title"><i class="el-icon-message"></i>导航一</template>
+                    <el-menu-item-group>
+                        <template slot="title">分组一</template>
+                        <el-menu-item index="1-1">选项1</el-menu-item>
+                        <el-menu-item index="1-2">选项2</el-menu-item>
+                    </el-menu-item-group>
+                    <el-menu-item-group title="分组2">
+                        <el-menu-item index="1-3">选项3</el-menu-item>
+                    </el-menu-item-group>
+                    <el-submenu index="1-4">
+                        <template slot="title">选项4</template>
+                        <el-menu-item index="1-4-1">选项1</el-menu-item>
+                    </el-submenu>
+                </el-submenu>
+                <el-menu-item index="2"><i class="el-icon-menu"></i>导航二</el-menu-item>
+                <el-menu-item index="3"><i class="el-icon-setting"></i>导航三</el-menu-item>
+            </el-menu>
+        </div>
+        <script>
+            var top = new Vue({
+                el: '#top',
+                data: function() {
+                    return {
+                        value: '',
+                        input:''
+                    }
+                },
+                methods: {
+
+                }
+            })
+            var left = new Vue({
+                el: '#left',
+                data: function() {
+                    return {
+                        value: '',
+                        input:''
+                    }
+                },
+                methods: {
+                    open() {
+                        this.$alert('这是一段内容', '标题名称', {
+                            confirmButtonText: '确定',
+                            callback: function(action){
+                                this.$message({
+                                    type: 'info',
+                                    message: `action: `+action + ' hahahehe'
+                                });
+                            }.bind(this)
+
+                        });
+                    }
+                }
+            })
+        </script>
+
+        <div class="right" style="background-color: lightsalmon;">
+            $screen_content
+        </div>
+    </div>
+    <div class="bottom" style="background-color: lightgreen;">
+        <p>bottom</p>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!-- 引入Vue -->
+<script src="//v1.vuejs.org/js/vue.min.js"></script>
+<!-- 引入样式 -->
+<link rel="stylesheet" href="//unpkg.com/iview/dist/styles/iview.css">
+<!-- 引入组件库 -->
+<script src="//unpkg.com/iview@1.0.1/dist/iview.min.js"></script>
+<template id="layout">
+    <Switch @on-change="change"></Switch>
+</template>
+<script>
+    new Vue({
+        el: '#layout',
+        data: {
+            visible: false
+        },
+        methods: {
+            change: function () {
+                alert("hello");
+            }
+        }
+    })
+</script>

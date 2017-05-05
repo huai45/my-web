@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>商品溯源管理</title>
+    <meta charset="utf-8" />
+    <script>
+    </script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="renderer" content="webkit" />
+    <link rel="dns-prefetch" href="//static.360buyimg.com" />
+    <link rel="icon" href="//www.jd.com/favicon.ico" mce_href="//www.jd.com/favicon.ico" type="image/x-icon" />
+
+    <script src="/js/common/vue.js"></script>
+    <script src="/js/common/common.js"></script>
+    <script src="/js/common/jquery.min.js"></script>
+    <script src="/js/common/vue-resource.min.js"></script>
+    <script src="/js/common/vue-router.min.js"></script>
+    <script src="/js/common/pop-design.min.js"></script>
+    <script src="/js/common/dragula.min.js"></script>
+    <script type="text/javascript" src="/js/common/photoswipe/photoswipe.min.js"></script>
+    <script type="text/javascript" src="/js/common/photoswipe/photoswipe-ui-default.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/pop-design.min.css" />
+    <link rel="stylesheet" type="text/css" href="/css/dragula.min.css" />
+    <link rel="stylesheet" type="text/css" href="/js/common/photoswipe/photoswipe.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/js/common/photoswipe/default-skin/default-skin.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/main.css" />
+</head>
+<body>
+<div id="head" style="min-height: 60px;">
+    <p-back-top></p-back-top>
+    <!--<div class="b-bifrost"></div>-->
+    <div class="headBox" style="margin: 0 auto; width: 1260px;" v-cloak>
+        <p-row>
+            <p-col span="5"><img src="/img/logo.png" alt="" style="display: block;"></p-col>
+            <p-col span="13">
+                <p-menu mode="horizontal" :theme="theme" :active-key.sync="activeIndex" @on-select="goturl">
+                    <p-menu-item :key="$index+''" v-for="it in memu">
+                        <p-icon :type="it.icon"></p-icon>
+                        {{it.title}}
+                    </p-menu-item>
+                </p-menu>
+            </p-col>
+            <p-col span="6" style="text-align: right;" v-ref>
+                <p-dropdown placement="bottom-end" @on-click="logout('$!{logoutUrl}')">
+                    <a href="javascript:void(0)" style="line-height:60px ;">
+                        <span style="color:#fff;">欢迎您登录，$!{userPin}</span>
+                        <p-icon type="arrow-down-b"></p-icon>
+                    </a>
+                    <p-dropdown-menu slot="list" style="text-align: left;">
+                        <p-dropdown-item>退出</p-dropdown-item>
+                    </p-dropdown-menu>
+                </p-dropdown>
+
+            </p-col>
+        </p-row>
+    </div>
+</div>
+<div class="main">
+    <div class="nav">
+        <p-affix v-cloak>
+            <p-menu :theme="theme" :active-key.sync="activeIndex" width="auto" @on-select="goturl">
+                <p-menu-item :key="$index+''" v-for="it in memu" v-if="it.enabled">
+                    <p-icon :type="it.icon"></p-icon>
+                    {{it.title}}
+                </p-menu-item>
+            </p-menu>
+        </p-affix>
+    </div>
+    <script src="/js/common/page-init.js"></script>
+    <div class="content">$screen_content</div>
+</div>
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="pswp__bg"></div>
+    <div class="pswp__scroll-wrap">
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="popfooter">
+    <style type="text/css">
+        .l-footer {
+            max-height: 54px;
+        }
+        .b-footer-box {
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+    </style>
+    <div class="l-footer">
+        <div class="b-footer-box">
+            <p class="copyright" style="margin-top: 10px; text-align: center;">Copyright @ 2004-2017 JD.COM 京东 版权所有</p>
+        </div>
+    </div>
+</div>
+</body>
+</html>
