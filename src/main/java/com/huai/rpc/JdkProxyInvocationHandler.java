@@ -40,8 +40,13 @@ public class JdkProxyInvocationHandler implements InvocationHandler {
         vo.put("method",method);
         vo.put("paramTypes",paramTypes);
         vo.put("params",params);
-        HelloClient client = new HelloClient(vo);
-        client.connect("127.0.0.1", 8000);
+
+        NettyClient client = new NettyClient(vo);
+        client.connect();
+
+//        HelloClient client = new HelloClient(vo);
+//        client.connect("127.0.0.1", 8000);
+
         Object result = client.getResult();
         return returnType.cast(result);
 //        return result;

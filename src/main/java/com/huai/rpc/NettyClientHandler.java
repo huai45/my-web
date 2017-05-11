@@ -10,6 +10,12 @@ import java.util.Map;
  */
 public class NettyClientHandler extends SimpleChannelInboundHandler<byte[]> {
 
+    private NettyClient nettyClient;
+
+    public NettyClientHandler(NettyClient nettyClient){
+        this.nettyClient = nettyClient;
+    }
+
     /**
      *  其中需要注意的是 channelRead0()方法，此方法接收到的可能是一些数据片段，比如服务器发送了5个字节数据，Client端不能保证一次全部收到，比如第一次收到3个字节，第二次收到2个字节。
      *  我们可能还会关心收到这些片段的顺序是否可发送顺序一致，这要看具体是什么协议，比如基于TCP协议的字节流是能保证顺序的。
@@ -20,13 +26,14 @@ public class NettyClientHandler extends SimpleChannelInboundHandler<byte[]> {
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, byte[] msg) throws Exception {
         System.out.println(" channelRead0    msg : " + msg);
-        Map param = (Map)MyUtil.getObject(msg);
+        Object data = (Object)MyUtil.getObject(msg);
+        nettyClient.param.put("data",data);
         // 收到消息直接打印输出
-        System.out.println(" Server return  param : " + param);
-        if(param.containsKey("result_code")){
-            NettyClient.running = false;
-            System.out.println(" NettyClient.running : " + NettyClient.running);
-        }
+        System.out.println(" Server return  param : " + data);
+//        if(param.containsKey("result_code")){
+            nettyClient.running = false;
+            System.out.println(" NettyClient.running : " + nettyClient.running);
+//        }
     }
 
     @Override

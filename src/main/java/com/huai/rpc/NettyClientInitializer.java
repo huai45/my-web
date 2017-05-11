@@ -10,10 +10,19 @@ import io.netty.handler.codec.serialization.ObjectDecoder;
 import io.netty.handler.codec.serialization.ObjectEncoder;
 import io.netty.handler.codec.string.StringDecoder;
 import io.netty.handler.codec.string.StringEncoder;
+
+import java.util.Map;
+
 /**
  * Created by zhonghuai.zhang on 2017/5/11.
  */
 public class NettyClientInitializer extends ChannelInitializer<SocketChannel> {
+
+    private NettyClient nettyClient;
+
+    public NettyClientInitializer(NettyClient nettyClient){
+        this.nettyClient = nettyClient;
+    }
 
     @Override
     protected void initChannel(SocketChannel ch) throws Exception {
@@ -32,6 +41,6 @@ public class NettyClientInitializer extends ChannelInitializer<SocketChannel> {
         // 客户端的逻辑
         pipeline.addLast("encoder", new ObjectEncoder());
         pipeline.addLast("decoder", new ObjectDecoder(Integer.MAX_VALUE, ClassResolvers.cacheDisabled(null)));
-        pipeline.addLast("handler", new NettyClientHandler());
+        pipeline.addLast("handler", new NettyClientHandler(nettyClient));
     }
 }

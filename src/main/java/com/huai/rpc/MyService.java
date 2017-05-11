@@ -7,7 +7,7 @@ import java.util.Map;
  */
 public interface MyService {
 
-    public String hello(Map param);
+    public Map hello(Map param);
 
     public Map hello2(Map param,String text,Integer num);
 
