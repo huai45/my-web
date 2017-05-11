@@ -19,7 +19,7 @@ public class NettyClient {
 
     public static String host = "127.0.0.1";
     public static int port = 8000;
-    public static boolean running = true;
+    public static volatile boolean running = true;
 
     public static void main(String[] args) throws InterruptedException, IOException {
         EventLoopGroup group = new NioEventLoopGroup();
@@ -40,7 +40,7 @@ public class NettyClient {
             ch.writeAndFlush(bytes);
             System.out.println(" 2222222222222222222222  ");
             while (running) {
-                Thread.sleep(1);
+//                Thread.sleep(1);
             }
             System.out.println(" Client is closing    NettyClient.running : " + running);
             // 控制台输入
