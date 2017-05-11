@@ -25,17 +25,17 @@ public class MyUtil {
             b = bos.toByteArray();
             bos.close();
 
-            System.out.println("b:"+b);
-            System.out.println("b:"+b.toString());
-            System.out.println("b:"+new String(b));
-            System.out.println("b:"+new String(b,"utf8"));
-            System.out.println("b:"+new String(b,"gbk"));
-            System.out.println("b:"+new String(b,"utf-8"));
+//            System.out.println("b:"+b);
+//            System.out.println("b:"+b.toString());
+//            System.out.println("b:"+new String(b));
+//            System.out.println("b:"+new String(b,"utf8"));
+//            System.out.println("b:"+new String(b,"gbk"));
+//            System.out.println("b:"+new String(b,"utf-8"));
 
-            BAIS = new ByteArrayInputStream(b);
-            OIS = new ObjectInputStream(BAIS);
-            Map param = (Map) (OIS.readObject());
-            System.out.println("反序列化:" + param);
+//            BAIS = new ByteArrayInputStream(b);
+//            OIS = new ObjectInputStream(BAIS);
+//            Map param = (Map) (OIS.readObject());
+//            System.out.println("反序列化:" + param);
 
         }catch (IOException e) {
             e.printStackTrace();
@@ -47,8 +47,8 @@ public class MyUtil {
     }
 
 
-    public static Map getObject(byte[] b){
-        Map param = null;
+    public static Object getObject(byte[] b){
+        Object param = null;
         // ByteArrayInputStream 可接收一个字节数组 "byte[] "。供反序列化做参数
         ByteArrayInputStream BAIS = null;
         // 反序列化使用的输入流
@@ -56,7 +56,7 @@ public class MyUtil {
         try {
             BAIS = new ByteArrayInputStream(b);
             OIS = new ObjectInputStream(BAIS);
-            param = (Map) (OIS.readObject());
+            param = OIS.readObject();
             System.out.println("反序列化:" + param);
             OIS.close();
         }catch (IOException e) {

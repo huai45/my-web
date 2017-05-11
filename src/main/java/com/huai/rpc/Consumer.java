@@ -16,9 +16,15 @@ public class Consumer {
         Map param = new HashMap();
         param.put("id","1");
         param.put("name","zhangsan");
-        Map result = service.hello2(param,"huai23",100);
-        System.out.println("result:"+result);
 
+//        String result1 = service.hello(param);
+//        System.out.println("result1:"+result1);
+
+        Map result2 = service.hello2(param,"huai23",100);
+        System.out.println("result2:"+result2);
+//
+//        String result3 = service.hello3(23);
+//        System.out.println("result3:"+result3);
     }
 
 }

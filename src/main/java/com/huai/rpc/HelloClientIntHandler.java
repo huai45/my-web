@@ -19,8 +19,6 @@ public class HelloClientIntHandler extends ChannelInboundHandlerAdapter {
     }
 
     private Map param;
-    public String msg = "Are you ok?";
-    public String data = "";
 
     private static Logger logger = LoggerFactory.getLogger(HelloClientIntHandler.class);
 
@@ -32,7 +30,7 @@ public class HelloClientIntHandler extends ChannelInboundHandlerAdapter {
         byte[] result1 = new byte[result.readableBytes()];
         result.readBytes(result1);
 
-        Map data = MyUtil.getObject(result1);
+        Object data = MyUtil.getObject(result1);
         System.out.println("data:" + data);
 
         param.put("data",data);

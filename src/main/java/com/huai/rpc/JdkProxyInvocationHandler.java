@@ -33,6 +33,7 @@ public class JdkProxyInvocationHandler implements InvocationHandler {
             System.out.println("intf = "+clazz);
         }
         method = targetMethod.getName();
+        Class returnType = targetMethod.getReturnType();
         Class[] paramTypes  = targetMethod.getParameterTypes();
         Map vo = new HashMap();
         vo.put("intf",clazz);
@@ -41,8 +42,11 @@ public class JdkProxyInvocationHandler implements InvocationHandler {
         vo.put("params",params);
         HelloClient client = new HelloClient(vo);
         client.connect("127.0.0.1", 8000);
-        return vo.get("data");
+        Object result = client.getResult();
+        return returnType.cast(result);
+//        return result;
     }
+
 
     /**
      * 获取该类实例

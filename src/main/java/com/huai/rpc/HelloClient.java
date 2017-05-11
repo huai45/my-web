@@ -17,11 +17,11 @@ import java.util.Map;
  */
 public class HelloClient {
 
+    private Map param;
+
     public HelloClient(Map param){
         this.param = param;
     }
-
-    private Map param;
 
     public void connect(String host, int port) throws Exception {
         EventLoopGroup workerGroup = new NioEventLoopGroup();
@@ -39,11 +39,16 @@ public class HelloClient {
             // Start the client.
             ChannelFuture f = b.connect(host, port).sync();
             // Wait until the connection is closed.
-            //f.channel().closeFuture().sync();
+            f.channel().closeFuture().sync();
+//            f.channel().close();
         } finally {
             workerGroup.shutdownGracefully();
         }
 
+    }
+
+    public Object getResult() throws Exception {
+       return param.get("data");
     }
 
     public static void main(String[] args) throws Exception {
