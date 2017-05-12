@@ -1,6 +1,8 @@
 package com.huai.util;
 
 import java.io.*;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -82,7 +84,19 @@ public class JavaPing {
 
     public static void main(String[] args) {
 //        new JavaPing().allPing("10.0.24");
-        new JavaPing().singlePing("10.0.24.142");
+//        new JavaPing().singlePing("10.0.24.142");
+
+        InetAddress ia=null;
+        try {
+            ia=ia.getLocalHost();
+            String localname=ia.getHostName();
+            String localip=ia.getHostAddress();
+            System.out.println("本机名称是："+ localname);
+            System.out.println("本机的ip是 ："+localip);
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 
 }
